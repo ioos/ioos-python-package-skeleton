@@ -1,5 +1,7 @@
 ## MYMODULE
 
+[![Build Status](https://travis-ci.com/ioos/ioos-python-package-skeleton.svg?branch=master)](https://travis-ci.com/ioos/ioos-python-package-skeleton)
+
 Quick description
 
 ### Documentation and code
