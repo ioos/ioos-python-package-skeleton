@@ -16,3 +16,4 @@ pytest-xdist
 sphinx
 twine
 wheel
+setuptools_scm
