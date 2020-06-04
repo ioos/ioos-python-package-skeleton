@@ -4,7 +4,8 @@ sudo: false
 
 env:
   global:
-    - secure: "TOKEN"
+    # Doctr deploy key for ioos/ioos-python-package-skeleton
+    - secure: "cxYSJ95MLPQd6hSkAAklHRKTTu0sp8nYUJpjhLg5HeULrmpbYjY3SfZMw7X2kbjxA4hPPldmPjIGouWQWi0J6gLXL+zaelS+lw6Y7a6yfy3nI2tRk0ddDZL670DWRdWtYrzrSfiS3i+cP6jkj636UDUj/glPe8PyB/Q4MQ1zIMV71unqkICuEDKFLPY2oeZ3Ue0fMdF8KlYfvWsvb6FcAq/wp2oPfLLE7nOLl4A6ygDxEsK9SVymQiJtnTMfQUYP2PmvMGQX3FwmiMBrSmIFS48Cc6SRfQmpI3o/KNaV+299d/6UWtR0aZcwFx8G8uH1oYvx5zxAj/YCzuyX6qR47zpL2or5H29rfyDJhabOsBOJAugJrRrMvWlSqlkEhtStrBFqnjaFPlgddE/rJGn0gQxcAVGLRatu02RAuaBDXFazWDIFiR3bzGpVUZusyzmZLtojDoPjPNWsH9whaij+zqss95ZPpDbWZreFzGAohI3M1nBXL2K07OkYjkzIJg2ASVat9EtdBZBnhEVnvA9lcv+9VsX4HmuXLmyUqPfNBlU6a+ii0bJPb2XhBhzWaWpLEhetxuM+AzR1V77X6sJXpJEktU2zrk/bgfn3ekzXvd6fnAmnkjsJw9eHMW6woKCM1inRFIst6isf/KCgo+8tICwx4VQzQg9uF5lDW66WtMI="
 
 matrix:
   fast_finish: true
