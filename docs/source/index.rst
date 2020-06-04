@@ -11,6 +11,7 @@ The best module ever written!
    :maxdepth: 3
    :caption: Contents:
 
+   tutorial.ipynb
    mymodule
 
 Indices and tables
