@@ -59,7 +59,7 @@ author = "Filipe Fernandes"
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-from mymodule import __version__ as VERSION
+from mymodule import __version__ as VERSION  # noqa
 
 
 version = VERSION
