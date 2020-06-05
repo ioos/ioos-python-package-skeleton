@@ -36,7 +36,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
     "nbsphinx",
-    "recommonmark"
+    "recommonmark",
 ]
 
 # Add any paths that contain templates here, relative to this directory.

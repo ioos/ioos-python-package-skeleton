@@ -322,7 +322,7 @@ The test section will run all the items in the matrix if the conditions are met.
 
 Note that the tarball check is more than just the files in the manifest.
 The command `pip wheel . -w dist --no-deps` creates the binary wheels and `twine check dist/*` ensures it is OK for publication on PyPI.
-      
+
 PS: one can create a local development environment using the same commands as the CI.
 If you already have conda installed something like,
 
