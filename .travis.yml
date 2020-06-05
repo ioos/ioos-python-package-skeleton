@@ -73,17 +73,3 @@ script:
 doctr:
   require-master: true
   sync: false
-
-deploy:
-  skip_cleanup: true
-  provider: pypi
-  user: ioos
-  password:
-    secure: "TOKEN"
-  distributions: sdist bdist_wheel
-  upload_docs: no
-  on:
-    repo: ioos/mymodule
-    tags: true
-    all_branches: master
-    condition: '$TEST_TARGET == "docs"'
