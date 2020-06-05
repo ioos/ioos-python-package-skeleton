@@ -69,7 +69,3 @@ script:
         python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html .
       fi
     fi
-
-doctr:
-  require-master: true
-  sync: false
