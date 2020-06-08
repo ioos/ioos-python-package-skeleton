@@ -168,7 +168,7 @@ The metadata and options fields are almost the same information that used to go 
 In addition to the metadata we can use this file to write the configuration for
 `flake8`, `check-manifest` and other tools.
 We strongly recommend adding a `check-manifest` test to avoid shipping broken tarballs.
-See more on tarball checks in teh #travis-yaml section.
+See more on tarball checks in the #travis-yaml section.
 
 Note: `flake8` can be handled exclusively via #pre-commit-hooks.
 
@@ -316,7 +316,7 @@ script:
 ```
 
 This configuration sets a test matrix with multiple python versions, tarball tests, coding standards, and documentation builds.
-The conda environment for the tests is crated using the same requirement files as one would fo with `pip` and the install section performs a simple `pip` installation to ensure everything works as expected on a user machine.
+The conda environment for the tests is created using the same requirement files as one would of with `pip` and the install section performs a simple `pip` installation to ensure everything works as expected on a user machine.
 
 The test section will run all the items in the matrix if the conditions are met. Note that the documentation section will also build for latest version, development, and the tagged version.
 
