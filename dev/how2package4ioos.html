@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IOOS packaging guidelines &#8212; MYMODULE 0.1.dev45+gc01dd91 documentation</title>
+    <title>IOOS packaging guidelines &#8212; MYMODULE 0.1.dev48+ga379409 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -275,7 +275,7 @@ The former will have the package metadata and tools configuration while the latt
 In addition to the metadata we can use this file to write the configuration for
 <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">check-manifest</span></code> and other tools.
 We strongly recommend adding a <code class="docutils literal notranslate"><span class="pre">check-manifest</span></code> test to avoid shipping broken tarballs.
-See more on tarball checks in teh #travis-yaml section.</p>
+See more on tarball checks in the #travis-yaml section.</p>
 <p>Note: <code class="docutils literal notranslate"><span class="pre">flake8</span></code> can be handled exclusively via #pre-commit-hooks.</p>
 </div>
 <div class="section" id="manifest-in">
@@ -412,7 +412,7 @@ maintain. The example below can be copied into your project with little modifica
 </pre></div>
 </div>
 <p>This configuration sets a test matrix with multiple python versions, tarball tests, coding standards, and documentation builds.
-The conda environment for the tests is crated using the same requirement files as one would fo with <code class="docutils literal notranslate"><span class="pre">pip</span></code> and the install section performs a simple <code class="docutils literal notranslate"><span class="pre">pip</span></code> installation to ensure everything works as expected on a user machine.</p>
+The conda environment for the tests is created using the same requirement files as one would of with <code class="docutils literal notranslate"><span class="pre">pip</span></code> and the install section performs a simple <code class="docutils literal notranslate"><span class="pre">pip</span></code> installation to ensure everything works as expected on a user machine.</p>
 <p>The test section will run all the items in the matrix if the conditions are met. Note that the documentation section will also build for latest version, development, and the tagged version.</p>
 <p>Note that the tarball check is more than just the files in the manifest.
 The command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">wheel</span> <span class="pre">.</span> <span class="pre">-w</span> <span class="pre">dist</span> <span class="pre">--no-deps</span></code> creates the binary wheels and <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">check</span> <span class="pre">dist/*</span></code> ensures it is OK for publication on PyPI.</p>
