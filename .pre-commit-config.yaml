@@ -44,3 +44,10 @@ repos:
   - id: mypy
     exclude: docs/source/conf.py
     args: [--ignore-missing-imports]
+
+- repo: https://github.com/codespell-project/codespell
+  rev: v1.16.0
+  hooks:
+    - id: codespell
+      args:
+        - --quiet-level=2
