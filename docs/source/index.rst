@@ -1,3 +1,11 @@
+Package Guidelines
+==================
+
+.. toctree::
+   :maxdepth: 3
+
+   how2package4ioos.md
+
 mymodule
 ========
 
