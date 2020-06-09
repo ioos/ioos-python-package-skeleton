@@ -28,7 +28,7 @@ pip install ioos_pkg_skeleton
 from ioos_pkg_skeleton import ioos_pkg_skeleton
 
 
-ioos_pkg_skeleton()
+ioos_pkg_skeleton.meaning_of_life_url()
 ```
 
 
