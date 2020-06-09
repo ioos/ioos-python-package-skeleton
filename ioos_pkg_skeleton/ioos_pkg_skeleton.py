@@ -1,7 +1,7 @@
 """
-mymodule
+ioos_pkg_skeleton
 
-My awesome mymodule
+My awesome ioos_pkg_skeleton
 """
 
 import numpy as np

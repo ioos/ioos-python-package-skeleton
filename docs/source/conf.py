@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# MYMODULE documentation build configuration file, created by
+# ioos_pkg_skeleton documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct  9 21:28:42 2017.
 #
 # This file is execfile()d with the current directory set to its
@@ -52,7 +52,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = "MYMODULE"
+project = "ioos_pkg_skeleton"
 copyright = "2017, Filipe Fernandes"
 author = "Filipe Fernandes"
 
@@ -60,7 +60,7 @@ author = "Filipe Fernandes"
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
-from mymodule import __version__ as VERSION  # noqa
+from ioos_pkg_skeleton import __version__ as VERSION  # noqa
 
 
 version = VERSION
@@ -99,9 +99,9 @@ html_theme = "alabaster"
 #
 html_theme_options = {
     "logo": "logo.png",
-    "logo_name": "MYMODULE",
+    "logo_name": "ioos_pkg_skeleton",
     "github_user": "ioos",
-    "github_repo": "MYMODULE",
+    "github_repo": "ioos_pkg_skeleton",
     "github_banner": True,
     "travis_button": True,
     "fixed_sidebar": True,
@@ -132,7 +132,7 @@ html_sidebars = {
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = "MYMODULEdoc"
+htmlhelp_basename = "ioos_pkg_skeletondoc"
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -158,8 +158,8 @@ latex_elements = {
 latex_documents = [
     (
         master_doc,
-        "MYMODULE.tex",
-        "MYMODULE Documentation",
+        "ioos_pkg_skeleton.tex",
+        "ioos_pkg_skeleton Documentation",
         "Filipe Fernandes",
         "manual",
     )
@@ -170,7 +170,9 @@ latex_documents = [
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [(master_doc, "MYMODULE", "MYMODULE Documentation", [author], 1)]
+man_pages = [
+    (master_doc, "ioos_pkg_skeleton", "ioos_pkg_skeleton Documentation", [author], 1)
+]
 
 
 # -- Options for Texinfo output -------------------------------------------
@@ -181,10 +183,10 @@ man_pages = [(master_doc, "MYMODULE", "MYMODULE Documentation", [author], 1)]
 texinfo_documents = [
     (
         master_doc,
-        "MYMODULE",
-        "MYMODULE Documentation",
+        "ioos_pkg_skeleton",
+        "ioos_pkg_skeleton Documentation",
         author,
-        "MYMODULE",
+        "ioos_pkg_skeleton",
         "One line description of project.",
         "Miscellaneous",
     )

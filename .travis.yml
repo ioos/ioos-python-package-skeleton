@@ -12,14 +12,14 @@ matrix:
   include:
     - name: "python-3.6"
       env: PY=3.6
-    - name: "python-3.7"
-      env: PY=3.7
+    - name: "python-3.8"
+      env: PY=3.8
     - name: "coding_standards"
-      env: PY=3.7
+      env: PY=3
     - name: "tarball"
-      env: PY=3.7
+      env: PY=3
     - name: "docs"
-      env: PY=3.7
+      env: PY=3
 
 before_install:
   # Install miniconda and create TEST env.
@@ -42,7 +42,7 @@ install:
 script:
   - if [[ $TRAVIS_JOB_NAME == python-* ]]; then
       cp -r tests/ /tmp ;
-      pushd /tmp && pytest -n 2 -rxs --cov=mymodule tests && popd ;
+      pushd /tmp && pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests && popd ;
     fi
 
   - if [[ $TRAVIS_JOB_NAME == 'tarball' ]]; then
