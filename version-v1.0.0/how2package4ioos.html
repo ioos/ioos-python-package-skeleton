@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOOS packaging guidelines &#8212; ioos_pkg_skeleton 1.0.0 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ioos_pkg_skeleton tutorial" href="tutorial.html" />
+    <link rel="prev" title="Package Guidelines" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<p class="logo">
+  <a href="index.html">
+    <img class="logo" src="_static/logo.png" alt="Logo"/>
+    
+  </a>
+</p>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=ioos&repo=ioos_pkg_skeleton&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+    
+
+<p>
+<a class="badge" href="https://travis-ci.org/ioos/ioos_pkg_skeleton">
+    <img
+        alt="https://secure.travis-ci.org/ioos/ioos_pkg_skeleton.svg?branch=master"
+        src="https://secure.travis-ci.org/ioos/ioos_pkg_skeleton.svg?branch=master"
+    />
+</a>
+</p>
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IOOS packaging guidelines</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#why-not-a-cookie-cutter">Why not a cookie-cutter?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-structure">Project structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pep-517-518">PEP 517/518</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-py"><code class="docutils literal notranslate"><span class="pre">setup.py</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup-cfg"><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#manifest-in"><code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#do-we-still-need-a-requirements-txt-file">Do we still need a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#continuous-integration">Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-pre-commit-locally-and-on-github-actions">Configuring <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> locally and on GitHub Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#github-actions">Github Actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#summary">Summary</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#extras">Extras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ioos_pkg_skeleton tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioos_pkg_skeleton.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code></a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Package Guidelines</a></li>
+      <li>Next: <a href="tutorial.html" title="next chapter">ioos_pkg_skeleton tutorial</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ioos-packaging-guidelines">
+<h1>IOOS packaging guidelines<a class="headerlink" href="#ioos-packaging-guidelines" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="why-not-a-cookie-cutter">
+<h2>Why not a cookie-cutter?<a class="headerlink" href="#why-not-a-cookie-cutter" title="Permalink to this headline">¶</a></h2>
+<p>IOOS packages are developed by multiple partners and enforcing a
+cookie-cutter would cause more harm than good.
+That is why we prefer a set of guidelines instead.</p>
+<p>This document describes these guidelines and how to implement them in an existing
+project or a new one.</p>
+<p>If you know enough about Python packaging just visit <a class="reference external" href="https://github.com/ioos/ioos-python-package-skeleton">https://github.com/ioos/ioos-python-package-skeleton</a> and copy the bits that are relevant to your project.</p>
+</div>
+<div class="section" id="project-structure">
+<h2>Project structure<a class="headerlink" href="#project-structure" title="Permalink to this headline">¶</a></h2>
+<p>Almost all python packages are structure as following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|-</span><span class="n">docs</span>
+<span class="o">|</span> <span class="o">|-</span><span class="n">source</span>
+<span class="o">|</span> <span class="o">|</span> <span class="o">|-</span><span class="n">_static</span>
+<span class="o">|</span> <span class="o">|-</span><span class="n">build</span>
+<span class="o">|-</span><span class="n">tests</span>
+<span class="o">|-</span><span class="n">ioos_pkg_skeleton</span>
+<span class="o">|-</span><span class="n">notebooks</span>
+<span class="o">|-</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
+<span class="o">|-</span><span class="n">LICENSE</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Sometimes the <code class="docutils literal notranslate"><span class="pre">tests</span></code> folder goes inside the actual module.
+We recommend that only if shipping the tests is important, e.g compiled modules.
+If your module is pure Python it is fine to leave them outside of the package.</p>
+<p>Always start writing tests and document from day 1!
+We also recommend to write notebooks with examples that can be build as part of the docs.</p>
+<p>Note that you should always have a README in your projects.
+Markdown is a good format because it renders automatically on GitHub and is support on PyPI.</p>
+<p>While IOOS does not recommend any particular license we prefer projects with OSI approved license,
+the most common one is BSD-3-Clause.</p>
+</div>
+<div class="section" id="pep-517-518">
+<h2>PEP 517/518<a class="headerlink" href="#pep-517-518" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.python.org/dev/peps/pep-0517">PEP 517</a> species a build-system that is
+independent of the format for source trees (your code).
+The idea is to allow for other tools to become Python builds systems,
+like <code class="docutils literal notranslate"><span class="pre">flit</span></code> and <code class="docutils literal notranslate"><span class="pre">poetry</span></code>,
+via a minimum interface installation with <code class="docutils literal notranslate"><span class="pre">pip</span></code>.
+PEP 517 really shines when combined with <a class="reference external" href="https://www.python.org/dev/peps/pep-0518">PEP 518</a>,
+which specifies a minimum build system requirements via the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file.</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[build-system]</span>
+<span class="n">requires</span> <span class="o">=</span> <span class="k">[&quot;setuptools&gt;=42&quot;, &quot;wheel&quot;, &quot;setuptools_scm[toml]&gt;=3.4&quot;, &quot;cython&quot;, &quot;numpy&quot;]</span>
+<span class="n">build-backend</span> <span class="o">=</span> <span class="s">&quot;setuptools.build_meta&quot;</span>
+</pre></div>
+</div>
+<p>When this file is present <code class="docutils literal notranslate"><span class="pre">pip</span></code> knows that it should install everything on requires before building the packages,
+and knows that it should be built with <code class="docutils literal notranslate"><span class="pre">setuptools</span></code>.</p>
+<p>The main advantages of using these PEPs together are:</p>
+<ul class="simple">
+<li><p>standardized non-executable config file;</p></li>
+<li><p>non-executable setup.py (safer installs without crazy workarounds);</p></li>
+<li><p>support many backends with one spec:</p>
+<ul>
+<li><p>poetry, setuptools, pipenv(?), flit, conda, etc;</p></li>
+<li><p>all should support pip installs.</p></li>
+</ul>
+</li>
+<li><p>ensure that setup dependencies will be available at build time.</p></li>
+</ul>
+<p><a class="reference external" href="https://medium.com/&#64;grassfedcode/pep-517-and-518-in-plain-english-47208ca8b7a6">This blog post</a> contains a nice summary of these PEPs.</p>
+<p>For IOOS packages we recommend to keep a bare bones <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>,
+for backwards compatibility, and to move all the package metadata to a <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>,
+while keeping the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> only for the build information.</p>
+</div>
+<div class="section" id="setup-py">
+<h2><code class="docutils literal notranslate"><span class="pre">setup.py</span></code><a class="headerlink" href="#setup-py" title="Permalink to this headline">¶</a></h2>
+<p>Most <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> files can now be simplified to just the version handling and build call:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">use_scm_version</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;write_to&quot;</span><span class="p">:</span> <span class="s2">&quot;ioos_pkg_skeleton/_version.py&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;write_to_template&quot;</span><span class="p">:</span> <span class="s1">&#39;__version__ = &quot;</span><span class="si">{version}</span><span class="s1">&quot;&#39;</span><span class="p">,</span>
+        <span class="s2">&quot;tag_regex&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;^(?P&lt;prefix&gt;v)?(?P&lt;version&gt;[^\+]+)(?P&lt;suffix&gt;.*)?$&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The use of <code class="docutils literal notranslate"><span class="pre">versioneer</span></code> is deprecated because PEP 518 now ignores files in the root of the package.
+One can work around it by adding the the root directory to the path in <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>
+but instead we recommend the use of <code class="docutils literal notranslate"><span class="pre">setuptools-scm</span></code>.
+Just add <code class="docutils literal notranslate"><span class="pre">setuptools-scm</span></code> to your development/build dependencies and the lines above in your <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file.
+The version will be automatically generated via tags and changes in your version control system.</p>
+<p>PS: <code class="docutils literal notranslate"><span class="pre">setuptools-scm</span></code> can use a file or <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> to get the version number.
+We do not recommend <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code>because, depending on the number of packages installed,
+that can lead to a significant overhead at import time.</p>
+</div>
+<div class="section" id="setup-cfg">
+<h2><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code><a class="headerlink" href="#setup-cfg" title="Permalink to this headline">¶</a></h2>
+<p>While could use the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> for most of your project configuration we recommend
+to split that between the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> for readability.
+The former will have the package metadata and tools configuration while the latter will specify the build system.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata]</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">ioos_pkg_skeleton</span>
+<span class="na">description</span> <span class="o">=</span> <span class="s">My Awesome module</span>
+<span class="na">author</span> <span class="o">=</span> <span class="s">AUTHOR NAME</span>
+<span class="na">author_email</span> <span class="o">=</span> <span class="s">AUTHOR@EMAIL.COM</span>
+<span class="na">url</span> <span class="o">=</span> <span class="s">https://github.com/ioos/ioos-python-package-skeleton</span>
+<span class="na">long_description</span> <span class="o">=</span> <span class="s">file: README.md</span>
+<span class="na">long_description_content_type</span> <span class="o">=</span> <span class="s">text/markdown</span>
+<span class="na">license</span> <span class="o">=</span> <span class="s">BSD-3-Clause</span>
+<span class="na">license_file</span> <span class="o">=</span> <span class="s">LICENSE.txt</span>
+<span class="na">classifiers</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    Development Status :: 5 - Production/Stable</span>
+<span class="s">    Intended Audience :: Science/Research</span>
+<span class="s">    Operating System :: OS Independent</span>
+<span class="s">    License :: OSI Approved :: BSD License</span>
+<span class="s">    Programming Language :: Python</span>
+<span class="s">    Programming Language :: Python :: 3</span>
+<span class="s">    Programming Language :: Python :: 3.6</span>
+<span class="s">    Programming Language :: Python :: 3.7</span>
+<span class="s">    Programming Language :: Python :: 3.8</span>
+<span class="s">    Topic :: Scientific/Engineering</span>
+
+<span class="k">[options]</span>
+<span class="na">zip_safe</span> <span class="o">=</span> <span class="s">False</span>
+<span class="na">install_requires</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    numpy</span>
+<span class="s">    requests</span>
+<span class="na">python_requires</span> <span class="o">=</span> <span class="s">&gt;=3.6</span>
+<span class="na">packages</span> <span class="o">=</span> <span class="s">find:</span>
+
+<span class="k">[sdist]</span>
+<span class="na">formats</span> <span class="o">=</span> <span class="s">gztar</span>
+
+<span class="k">[check-manifest]</span>
+<span class="na">ignore</span> <span class="o">=</span><span class="s"></span>
+<span class="s">    *.yml</span>
+<span class="s">    *.yaml</span>
+<span class="s">    .coveragerc</span>
+<span class="s">    docs</span>
+<span class="s">    docs/*</span>
+<span class="s">    *.enc</span>
+<span class="s">    notebooks</span>
+<span class="s">    notebooks/*</span>
+<span class="s">    tests</span>
+<span class="s">    tests/*</span>
+
+<span class="k">[flake8]</span>
+<span class="na">max-line-length</span> <span class="o">=</span> <span class="s">105</span>
+<span class="na">select</span> <span class="o">=</span> <span class="s">C,E,F,W,B,B950</span>
+<span class="na">ignore</span> <span class="o">=</span> <span class="s">E203, E501, W503</span>
+<span class="na">exclude</span> <span class="o">=</span> <span class="s">ioos_pkg_skeleton/_version.py</span>
+</pre></div>
+</div>
+<p>The metadata and options fields are almost the same information that used to go in the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.
+In addition to the metadata we can use this file to write the configuration for
+<code class="docutils literal notranslate"><span class="pre">flake8</span></code>, <code class="docutils literal notranslate"><span class="pre">check-manifest</span></code> and other tools.
+We strongly recommend adding a <code class="docutils literal notranslate"><span class="pre">check-manifest</span></code> test to avoid shipping broken tarballs.
+See more on tarball checks in the #travis-yaml section.</p>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">flake8</span></code> can be handled exclusively via #pre-commit-hooks.</p>
+</div>
+<div class="section" id="manifest-in">
+<h2><code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code><a class="headerlink" href="#manifest-in" title="Permalink to this headline">¶</a></h2>
+<p>Most of the problems we find with published tarballs is the lack of a required file at build time.
+That is we why recommend <code class="docutils literal notranslate"><span class="pre">check-manifest</span></code> to help you write your <code class="docutils literal notranslate"><span class="pre">MANIFEST.in</span></code> file.
+Here is an example that covers most cases:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">include</span> <span class="o">*.</span><span class="n">txt</span>
+<span class="n">include</span> <span class="n">LICENSE</span> <span class="c1"># Please consider the Windows users and use .txt</span>
+<span class="n">include</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
+
+<span class="n">recursive</span><span class="o">-</span><span class="n">include</span> <span class="n">ioos_pkg_skeleton</span> <span class="o">*.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="do-we-still-need-a-requirements-txt-file">
+<h2>Do we still need a <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file?<a class="headerlink" href="#do-we-still-need-a-requirements-txt-file" title="Permalink to this headline">¶</a></h2>
+<p>Sadly yes, PEP 517/518 do not allow for non-python dependencies in the spec.
+Even though the first two are already in the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> we cannot specify <code class="docutils literal notranslate"><span class="pre">libnetcdf</span></code>
+and <code class="docutils literal notranslate"><span class="pre">libgdal</span></code> without an external file.</p>
+<p>In order to make the package both <code class="docutils literal notranslate"><span class="pre">pip</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code> friendly we recommend to add the
+external dependencies as comments and write a parser to read them in your CI,
+or just duplicated them in the install section of your testing CI.</p>
+<p>For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span>
+<span class="n">requests</span>
+<span class="c1">#conda: libnetcdf</span>
+<span class="c1">#conda: libgdal</span>
+</pre></div>
+</div>
+<p>One should also have a <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> with all the dependencies that are used to
+build the package, build documents, and perform tests. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># code style/consistency</span>
+<span class="n">black</span>
+<span class="n">flake8</span>
+<span class="n">flake8</span><span class="o">-</span><span class="n">builtins</span>
+<span class="n">flake8</span><span class="o">-</span><span class="n">comprehensions</span>
+<span class="n">flake8</span><span class="o">-</span><span class="n">mutable</span>
+<span class="n">flake8</span><span class="o">-</span><span class="nb">print</span>
+<span class="n">isort</span>
+<span class="n">pylint</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">flake8</span>
+<span class="c1"># checks and tests</span>
+<span class="n">check</span><span class="o">-</span><span class="n">manifest</span>
+<span class="n">pytest</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">cov</span>
+<span class="n">pytest</span><span class="o">-</span><span class="n">xdist</span>
+<span class="n">pre</span><span class="o">-</span><span class="n">commit</span>
+<span class="c1"># documentation</span>
+<span class="n">doctr</span>
+<span class="n">nbsphinx</span>
+<span class="n">sphinx</span>
+<span class="c1"># build</span>
+<span class="n">setuptools_scm</span>
+<span class="n">twine</span>
+<span class="n">wheel</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h2>
+<p>The easiest one to configure is Travis-CI,
+while AzurePipelines are growing in popularity Travis-CI is easier to setup up and
+maintain. The example below can be copied into your project with little modifications.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">language</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">minimal</span>
+
+<span class="nt">sudo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">env</span><span class="p">:</span>
+  <span class="nt">global</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">secure</span><span class="p">:</span> <span class="s">&quot;TOKEN&quot;</span>
+
+<span class="nt">matrix</span><span class="p">:</span>
+  <span class="nt">fast_finish</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">include</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;python-3.6&quot;</span>
+      <span class="nt">env</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PY=3.6</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;python-3.8&quot;</span>
+      <span class="nt">env</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PY=3.8</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;coding_standards&quot;</span>
+      <span class="nt">env</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PY=3</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;tarball&quot;</span>
+      <span class="nt">env</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PY=3</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="s">&quot;docs&quot;</span>
+      <span class="nt">env</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">PY=3</span>
+
+<span class="nt">before_install</span><span class="p">:</span>
+  <span class="c1"># Install miniconda and create TEST env.</span>
+  <span class="p p-Indicator">-</span> <span class="p p-Indicator">|</span>
+    <span class="no">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh</span>
+    <span class="no">bash miniconda.sh -b -p $HOME/miniconda</span>
+    <span class="no">export PATH=&quot;$HOME/miniconda/bin:$PATH&quot;</span>
+    <span class="no">conda config --set always_yes yes --set changeps1 no --set show_channel_urls true</span>
+    <span class="no">conda update --quiet conda</span>
+    <span class="no">conda config --add channels conda-forge --force</span>
+    <span class="no">conda config --set channel_priority strict</span>
+    <span class="no">conda create --name TEST python=$PY --file requirements.txt --file requirements-dev.txt</span>
+    <span class="no">source activate TEST</span>
+    <span class="no">conda info --all</span>
+
+<span class="nt">install</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">pip install -e . --no-deps --force-reinstall</span>
+
+<span class="nt">script</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">if [[ $TRAVIS_JOB_NAME == python-* ]]; then</span>
+      <span class="l l-Scalar l-Scalar-Plain">cp -r tests/ /tmp ;</span>
+      <span class="l l-Scalar l-Scalar-Plain">pushd /tmp &amp;&amp; pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests &amp;&amp; popd ;</span>
+    <span class="l l-Scalar l-Scalar-Plain">fi</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">if [[ $TRAVIS_JOB_NAME == &#39;tarball&#39; ]]; then</span>
+      <span class="l l-Scalar l-Scalar-Plain">pip wheel . -w dist --no-deps ;</span>
+      <span class="l l-Scalar l-Scalar-Plain">check-manifest --verbose ;</span>
+      <span class="l l-Scalar l-Scalar-Plain">twine check dist/* ;</span>
+    <span class="l l-Scalar l-Scalar-Plain">fi</span>
+
+  <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">if [[ $TRAVIS_JOB_NAME == &#39;coding_standards&#39; ]]; then</span>
+      <span class="l l-Scalar l-Scalar-Plain">pytest --flake8 -m flake8 ;</span>
+    <span class="l l-Scalar l-Scalar-Plain">fi</span>
+
+  <span class="p p-Indicator">-</span> <span class="p p-Indicator">|</span>
+    <span class="no">if [[ $TRAVIS_JOB_NAME == &#39;docs&#39; ]]; then</span>
+      <span class="no">set -e</span>
+      <span class="no">cp notebooks/tutorial.ipynb docs/source/</span>
+      <span class="no">pushd docs</span>
+      <span class="no">make clean html linkcheck</span>
+      <span class="no">popd</span>
+      <span class="no">if [[ -z &quot;$TRAVIS_TAG&quot; ]]; then</span>
+        <span class="no">python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html dev</span>
+      <span class="no">else</span>
+        <span class="no">python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html &quot;version-$TRAVIS_TAG&quot;</span>
+        <span class="no">python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html .</span>
+      <span class="no">fi</span>
+    <span class="no">fi</span>
+</pre></div>
+</div>
+<p>This configuration sets a test matrix with multiple python versions, tarball tests, coding standards, and documentation builds.
+The conda environment for the tests is created using the same requirement files as one would of with <code class="docutils literal notranslate"><span class="pre">pip</span></code> and the install section performs a simple <code class="docutils literal notranslate"><span class="pre">pip</span></code> installation to ensure everything works as expected on a user machine.</p>
+<p>The test section will run all the items in the matrix if the conditions are met. Note that the documentation section will also build for latest version, development, and the tagged version.</p>
+<p>Note that the tarball check is more than just the files in the manifest.
+The command <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">wheel</span> <span class="pre">.</span> <span class="pre">-w</span> <span class="pre">dist</span> <span class="pre">--no-deps</span></code> creates the binary wheels and <code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">check</span> <span class="pre">dist/*</span></code> ensures it is OK for publication on PyPI.</p>
+<p>PS: one can create a local development environment using the same commands as the CI.
+If you already have conda installed something like,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">--</span><span class="n">name</span> <span class="n">TEST</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span> <span class="o">--</span><span class="n">file</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span> <span class="o">--</span><span class="n">file</span> <span class="n">requirements</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>will create the testing env for Python 3.8.</p>
+</div>
+<div class="section" id="configuring-pre-commit-locally-and-on-github-actions">
+<h2>Configuring <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> locally and on GitHub Actions<a class="headerlink" href="#configuring-pre-commit-locally-and-on-github-actions" title="Permalink to this headline">¶</a></h2>
+<p>With <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> we can run multiple checks every time we issue a new commit.
+These checks can also be run on GitHub Actions as a CI.
+This is useful when the contributors do not have <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> installed on their machine.</p>
+<p>The configuration below can be dropped in the project root.
+The checks selection are not comprehensive and not all of them are good for all the projects.
+We will leave as an exercise to the reader to determine which ones are best for your project.</p>
+<p>We do recommend <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">isort</span></code> for big projects with multiple contributors though because them help PR reviews by removing the code style from the equation.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">repos</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/pre-commit-hooks</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v3.1.0</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">trailing-whitespace</span>
+      <span class="nt">exclude</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">tests/data</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check-ast</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">debug-statements</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">end-of-file-fixer</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check-docstring-first</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">check-added-large-files</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">requirements-txt-fixer</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">file-contents-sorter</span>
+      <span class="nt">files</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">requirements-dev.txt</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://gitlab.com/pycqa/flake8</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3.7.9</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flake8</span>
+      <span class="nt">exclude</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docs/source/conf.py</span>
+      <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--max-line-length=105</span><span class="p p-Indicator">,</span> <span class="nv">--ignore=E203</span><span class="p p-Indicator">,</span><span class="nv">E501</span><span class="p p-Indicator">,</span><span class="nv">W503</span><span class="p p-Indicator">,</span> <span class="nv">--select=select=C</span><span class="p p-Indicator">,</span><span class="nv">E</span><span class="p p-Indicator">,</span><span class="nv">F</span><span class="p p-Indicator">,</span><span class="nv">W</span><span class="p p-Indicator">,</span><span class="nv">B</span><span class="p p-Indicator">,</span><span class="nv">B950</span><span class="p p-Indicator">]</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/mirrors-isort</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v4.3.21</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">isort</span>
+    <span class="nt">additional_dependencies</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">toml</span><span class="p p-Indicator">]</span>
+    <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--project=ioos_pkg_skeleton</span><span class="p p-Indicator">,</span> <span class="nv">--multi-line=3</span><span class="p p-Indicator">,</span> <span class="nv">--lines-after-imports=2</span><span class="p p-Indicator">,</span> <span class="nv">--lines-between-types=1</span><span class="p p-Indicator">,</span> <span class="nv">--trailing-comma</span><span class="p p-Indicator">,</span> <span class="nv">--force-grid-wrap=0</span><span class="p p-Indicator">,</span> <span class="nv">--use-parentheses</span><span class="p p-Indicator">,</span> <span class="nv">--line-width=88</span><span class="p p-Indicator">]</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/asottile/seed-isort-config</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v2.1.1</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">seed-isort-config</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/psf/black</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">stable</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">black</span>
+    <span class="nt">language_version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">python3</span>
+
+<span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/pre-commit/mirrors-mypy</span>
+  <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v0.770</span>
+  <span class="nt">hooks</span><span class="p">:</span>
+  <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">mypy</span>
+    <span class="nt">exclude</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docs/source/conf.py</span>
+    <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--ignore-missing-imports</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>In order to run them in every commit one must install them with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Two other handy commands are running to all files (if you are configuring it for an existing project):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pre</span><span class="o">-</span><span class="n">commit</span> <span class="n">run</span> <span class="o">--</span><span class="nb">all</span><span class="o">-</span><span class="n">files</span>
+</pre></div>
+</div>
+<p>and ignoring it in a commit if you don’t want it to run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="n">ioos_pkg_skeleton</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">dot</span><span class="o">-</span><span class="n">pwhy</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="github-actions">
+<h2>Github Actions<a class="headerlink" href="#github-actions" title="Permalink to this headline">¶</a></h2>
+<p>There is a lot that we can do with GitHub Actions, here we’ll use it as an extra CI that will run the <code class="docutils literal notranslate"><span class="pre">pre-commit</span></code> checks. This is very useful when contributors do not have pre-commit configured in their machines.</p>
+<p>This file should be in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> folder.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pre-commit</span>
+
+<span class="nt">on</span><span class="p">:</span>
+  <span class="nt">pull_request</span><span class="p">:</span>
+  <span class="nt">push</span><span class="p">:</span>
+    <span class="nt">branches</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">master</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+  <span class="nt">pre-commit</span><span class="p">:</span>
+    <span class="nt">runs-on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+    <span class="nt">steps</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/checkout@v1</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v1</span>
+    <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">set PY</span>
+      <span class="nt">run</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">echo &quot;::set-env name=PY::$(python --version --version | sha256sum | cut -d&#39; &#39; -f1)&quot;</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">actions/cache@v1</span>
+      <span class="nt">with</span><span class="p">:</span>
+        <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">~/.cache/pre-commit</span>
+        <span class="nt">key</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pre-commit|${{ env.PY }}|${{ hashFiles(&#39;.pre-commit-config.yaml&#39;) }}</span>
+    <span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">pre-commit/action@v1.0.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<p>For IOOS project we divided the guidelines here in “Must Have” and “Nice to Have.”</p>
+<p>The Must Have list is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">README</span>
+  <span class="o">-</span> <span class="n">install</span> <span class="n">instructions</span>
+<span class="o">-</span> <span class="n">License</span>
+<span class="o">-</span> <span class="n">docs</span>
+<span class="o">-</span> <span class="n">unittest</span> <span class="n">tests</span>
+<span class="o">-</span> <span class="n">CIs</span>
+</pre></div>
+</div>
+<p>and the Nice to Have:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- automatic version number from tags (`setuptools-scm`)
+- auto-publish docs and tarball (`sphinx` and `doctr`)
+- tarball automated checks (`check-manifest`)
+- standard style: `black`, lints (`flake8`), `isort`
+- integration tests
+- Windows Testing
+- A package on both PyPI and conda-forge
+</pre></div>
+</div>
+</div>
+<div class="section" id="extras">
+<h2>Extras<a class="headerlink" href="#extras" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">CONTRIBUTING</span><span class="o">.</span><span class="n">rst</span>
+<span class="o">-</span> <span class="o">.</span><span class="n">github</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Please check out https://www.pyopensci.org/</p>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>auto PyPI publication
+https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/</p></li>
+<li><p>conda-forge publication</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2017, Filipe Fernandes.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/how2package4ioos.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/ioos/ioos_pkg_skeleton" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
