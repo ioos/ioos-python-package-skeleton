@@ -4,7 +4,7 @@
    "cell_type": "markdown",
    "metadata": {},
    "source": [
-    "# mymodule tutorial"
+    "# ioos_pkg_skeleton tutorial"
    ]
   },
   {
@@ -26,10 +26,10 @@
     }
    ],
    "source": [
-    "import mymodule\n",
+    "import ioos_pkg_skeleton\n",
     "\n",
     "\n",
-    "mymodule.meaning_of_life(3)"
+    "ioos_pkg_skeleton.meaning_of_life(3)"
    ]
   },
   {
@@ -49,7 +49,7 @@
     }
    ],
    "source": [
-    "mymodule.meaning_of_life_url()"
+    "ioos_pkg_skeleton.meaning_of_life_url()"
    ]
   }
  ],

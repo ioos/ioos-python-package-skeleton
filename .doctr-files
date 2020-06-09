@@ -1,8 +1,8 @@
 ./_modules/index.html
-./_modules/mymodule/mymodule.html
+./_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html
 ./_sources/how2package4ioos.md.txt
 ./_sources/index.rst.txt
-./_sources/mymodule.rst.txt
+./_sources/ioos_pkg_skeleton.rst.txt
 ./_sources/tutorial.ipynb.txt
 ./_static/alabaster.css
 ./_static/basic.css
@@ -23,7 +23,7 @@
 ./genindex.html
 ./how2package4ioos.html
 ./index.html
-./mymodule.html
+./ioos_pkg_skeleton.html
 ./objects.inv
 ./py-modindex.html
 ./search.html
