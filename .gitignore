@@ -7,4 +7,4 @@
 build/
 dist/
 docs/source/tutorial.ipynb
-mymodule/_version.py
+ioos_pkg_skeleton/_version.py

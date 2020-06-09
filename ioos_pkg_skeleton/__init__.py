@@ -1,4 +1,4 @@
-from mymodule.mymodule import meaning_of_life, meaning_of_life_url
+from ioos_pkg_skeleton.ioos_pkg_skeleton import meaning_of_life, meaning_of_life_url
 
 
 __all__ = [
