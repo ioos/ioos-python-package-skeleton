@@ -6,11 +6,11 @@ Package Guidelines
 
    how2package4ioos.md
 
-mymodule
-========
+ioos_pkg_skeleton
+=================
 
-What is MYMODULE?
------------------
+What is ioos_pkg_skeleton?
+--------------------------
 
 The best module ever written!
 
@@ -20,7 +20,7 @@ The best module ever written!
    :caption: Contents:
 
    tutorial.ipynb
-   mymodule
+   ioos_pkg_skeleton
 
 Indices and tables
 ==================

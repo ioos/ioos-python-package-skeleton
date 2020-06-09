@@ -1,8 +1,8 @@
 dev/_modules/index.html
-dev/_modules/mymodule/mymodule.html
+dev/_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html
 dev/_sources/how2package4ioos.md.txt
 dev/_sources/index.rst.txt
-dev/_sources/mymodule.rst.txt
+dev/_sources/ioos_pkg_skeleton.rst.txt
 dev/_sources/tutorial.ipynb.txt
 dev/_static/alabaster.css
 dev/_static/basic.css
@@ -23,7 +23,7 @@ dev/_static/underscore.js
 dev/genindex.html
 dev/how2package4ioos.html
 dev/index.html
-dev/mymodule.html
+dev/ioos_pkg_skeleton.html
 dev/objects.inv
 dev/py-modindex.html
 dev/search.html

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IOOS packaging guidelines &#8212; MYMODULE 0.1.dev48+ga379409 documentation</title>
+    <title>IOOS packaging guidelines &#8212; ioos_pkg_skeleton 0.0.2.dev3+g626cd51 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,7 +16,7 @@
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="mymodule tutorial" href="tutorial.html" />
+    <link rel="next" title="ioos_pkg_skeleton tutorial" href="tutorial.html" />
     <link rel="prev" title="Package Guidelines" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -42,7 +42,7 @@
 
 
 <p>
-<iframe src="https://ghbtns.com/github-btn.html?user=ioos&repo=MYMODULE&type=watch&count=true&size=large&v=2"
+<iframe src="https://ghbtns.com/github-btn.html?user=ioos&repo=ioos_pkg_skeleton&type=watch&count=true&size=large&v=2"
   allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
 </p>
 
@@ -53,10 +53,10 @@
     
 
 <p>
-<a class="badge" href="https://travis-ci.org/ioos/MYMODULE">
+<a class="badge" href="https://travis-ci.org/ioos/ioos_pkg_skeleton">
     <img
-        alt="https://secure.travis-ci.org/ioos/MYMODULE.svg?branch=master"
-        src="https://secure.travis-ci.org/ioos/MYMODULE.svg?branch=master"
+        alt="https://secure.travis-ci.org/ioos/ioos_pkg_skeleton.svg?branch=master"
+        src="https://secure.travis-ci.org/ioos/ioos_pkg_skeleton.svg?branch=master"
     />
 </a>
 </p>
@@ -83,8 +83,8 @@
 </ul>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">mymodule tutorial</a></li>
-<li class="toctree-l1"><a class="reference internal" href="mymodule.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mymodule</span> <span class="pre">API</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ioos_pkg_skeleton tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ioos_pkg_skeleton.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code></a></li>
 </ul>
 
 <div class="relations">
@@ -92,7 +92,7 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">Package Guidelines</a></li>
-      <li>Next: <a href="tutorial.html" title="next chapter">mymodule tutorial</a></li>
+      <li>Next: <a href="tutorial.html" title="next chapter">ioos_pkg_skeleton tutorial</a></li>
   </ul></li>
 </ul>
 </div>
@@ -141,7 +141,7 @@ project or a new one.</p>
 <span class="o">|</span> <span class="o">|</span> <span class="o">|-</span><span class="n">_static</span>
 <span class="o">|</span> <span class="o">|-</span><span class="n">build</span>
 <span class="o">|-</span><span class="n">tests</span>
-<span class="o">|-</span><span class="n">mymodule</span>
+<span class="o">|-</span><span class="n">ioos_pkg_skeleton</span>
 <span class="o">|-</span><span class="n">notebooks</span>
 <span class="o">|-</span><span class="n">README</span><span class="o">.</span><span class="n">md</span>
 <span class="o">|-</span><span class="n">LICENSE</span><span class="o">.</span><span class="n">txt</span>
@@ -197,7 +197,7 @@ while keeping the <code class="docutils literal notranslate"><span class="pre">p
 
 <span class="n">setup</span><span class="p">(</span>
     <span class="n">use_scm_version</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;write_to&quot;</span><span class="p">:</span> <span class="s2">&quot;mymodule/_version.py&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;write_to&quot;</span><span class="p">:</span> <span class="s2">&quot;ioos_pkg_skeleton/_version.py&quot;</span><span class="p">,</span>
         <span class="s2">&quot;write_to_template&quot;</span><span class="p">:</span> <span class="s1">&#39;__version__ = &quot;</span><span class="si">{version}</span><span class="s1">&quot;&#39;</span><span class="p">,</span>
         <span class="s2">&quot;tag_regex&quot;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;^(?P&lt;prefix&gt;v)?(?P&lt;version&gt;[^\+]+)(?P&lt;suffix&gt;.*)?$&quot;</span><span class="p">,</span>
     <span class="p">}</span>
@@ -219,7 +219,7 @@ that can lead to a significant overhead at import time.</p>
 to split that between the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> and <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> for readability.
 The former will have the package metadata and tools configuration while the latter will specify the build system.</p>
 <div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata]</span>
-<span class="na">name</span> <span class="o">=</span> <span class="s">mymodule</span>
+<span class="na">name</span> <span class="o">=</span> <span class="s">ioos_pkg_skeleton</span>
 <span class="na">description</span> <span class="o">=</span> <span class="s">My Awesome module</span>
 <span class="na">author</span> <span class="o">=</span> <span class="s">AUTHOR NAME</span>
 <span class="na">author_email</span> <span class="o">=</span> <span class="s">AUTHOR@EMAIL.COM</span>
@@ -268,7 +268,7 @@ The former will have the package metadata and tools configuration while the latt
 <span class="na">max-line-length</span> <span class="o">=</span> <span class="s">105</span>
 <span class="na">select</span> <span class="o">=</span> <span class="s">C,E,F,W,B,B950</span>
 <span class="na">ignore</span> <span class="o">=</span> <span class="s">E203, E501, W503</span>
-<span class="na">exclude</span> <span class="o">=</span> <span class="s">mymodule/_version.py</span>
+<span class="na">exclude</span> <span class="o">=</span> <span class="s">ioos_pkg_skeleton/_version.py</span>
 </pre></div>
 </div>
 <p>The metadata and options fields are almost the same information that used to go in the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.
@@ -287,7 +287,7 @@ Here is an example that covers most cases:</p>
 <span class="n">include</span> <span class="n">LICENSE</span> <span class="c1"># Please consider the Windows users and use .txt</span>
 <span class="n">include</span> <span class="n">README</span><span class="o">.</span><span class="n">md</span>
 
-<span class="n">recursive</span><span class="o">-</span><span class="n">include</span> <span class="n">mymodule</span> <span class="o">*.</span><span class="n">py</span>
+<span class="n">recursive</span><span class="o">-</span><span class="n">include</span> <span class="n">ioos_pkg_skeleton</span> <span class="o">*.</span><span class="n">py</span>
 </pre></div>
 </div>
 </div>
@@ -382,7 +382,7 @@ maintain. The example below can be copied into your project with little modifica
 <span class="nt">script</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">if [[ $TRAVIS_JOB_NAME == python-* ]]; then</span>
       <span class="l l-Scalar l-Scalar-Plain">cp -r tests/ /tmp ;</span>
-      <span class="l l-Scalar l-Scalar-Plain">pushd /tmp &amp;&amp; pytest -n 2 -rxs --cov=mymodule tests &amp;&amp; popd ;</span>
+      <span class="l l-Scalar l-Scalar-Plain">pushd /tmp &amp;&amp; pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests &amp;&amp; popd ;</span>
     <span class="l l-Scalar l-Scalar-Plain">fi</span>
 
   <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">if [[ $TRAVIS_JOB_NAME == &#39;tarball&#39; ]]; then</span>
@@ -459,7 +459,7 @@ We will leave as an exercise to the reader to determine which ones are best for 
   <span class="nt">hooks</span><span class="p">:</span>
   <span class="p p-Indicator">-</span> <span class="nt">id</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">isort</span>
     <span class="nt">additional_dependencies</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">toml</span><span class="p p-Indicator">]</span>
-    <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--project=mymodule</span><span class="p p-Indicator">,</span> <span class="nv">--multi-line=3</span><span class="p p-Indicator">,</span> <span class="nv">--lines-after-imports=2</span><span class="p p-Indicator">,</span> <span class="nv">--lines-between-types=1</span><span class="p p-Indicator">,</span> <span class="nv">--trailing-comma</span><span class="p p-Indicator">,</span> <span class="nv">--force-grid-wrap=0</span><span class="p p-Indicator">,</span> <span class="nv">--use-parentheses</span><span class="p p-Indicator">,</span> <span class="nv">--line-width=88</span><span class="p p-Indicator">]</span>
+    <span class="nt">args</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">--project=ioos_pkg_skeleton</span><span class="p p-Indicator">,</span> <span class="nv">--multi-line=3</span><span class="p p-Indicator">,</span> <span class="nv">--lines-after-imports=2</span><span class="p p-Indicator">,</span> <span class="nv">--lines-between-types=1</span><span class="p p-Indicator">,</span> <span class="nv">--trailing-comma</span><span class="p p-Indicator">,</span> <span class="nv">--force-grid-wrap=0</span><span class="p p-Indicator">,</span> <span class="nv">--use-parentheses</span><span class="p p-Indicator">,</span> <span class="nv">--line-width=88</span><span class="p p-Indicator">]</span>
 
 <span class="p p-Indicator">-</span> <span class="nt">repo</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/asottile/seed-isort-config</span>
   <span class="nt">rev</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">v2.1.1</span>
@@ -489,7 +489,7 @@ We will leave as an exercise to the reader to determine which ones are best for 
 </pre></div>
 </div>
 <p>and ignoring it in a commit if you don’t want it to run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="n">mymodule</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">dot</span><span class="o">-</span><span class="n">pwhy</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">commit</span> <span class="n">ioos_pkg_skeleton</span><span class="o">/</span><span class="n">some</span><span class="o">-</span><span class="n">dot</span><span class="o">-</span><span class="n">pwhy</span><span class="o">.</span><span class="n">py</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">verify</span>
 </pre></div>
 </div>
 </div>
@@ -554,7 +554,8 @@ We will leave as an exercise to the reader to determine which ones are best for 
 <div class="section" id="todo">
 <h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>auto PyPI publication</p></li>
+<li><p>auto PyPI publication
+https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/</p></li>
 <li><p>conda-forge publication</p></li>
 </ul>
 </div>
@@ -580,7 +581,7 @@ We will leave as an exercise to the reader to determine which ones are best for 
     </div>
 
     
-    <a href="https://github.com/ioos/MYMODULE" class="github">
+    <a href="https://github.com/ioos/ioos_pkg_skeleton" class="github">
         <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
     </a>
     
