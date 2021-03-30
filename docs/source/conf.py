@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 #
 # ioos_pkg_skeleton documentation build configuration file, created by
 # sphinx-quickstart on Mon Oct  9 21:28:42 2017.
@@ -61,7 +60,6 @@ author = "Filipe Fernandes"
 # built documents.
 #
 from ioos_pkg_skeleton import __version__ as VERSION  # noqa
-
 
 version = VERSION
 # The full version, including alpha/beta/rc tags.
@@ -125,7 +123,7 @@ html_sidebars = {
         "relations.html",  # needs 'show_related': True theme option to display
         "searchbox.html",
         "donate.html",
-    ]
+    ],
 }
 
 
@@ -162,7 +160,7 @@ latex_documents = [
         "ioos_pkg_skeleton Documentation",
         "Filipe Fernandes",
         "manual",
-    )
+    ),
 ]
 
 
@@ -171,7 +169,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, "ioos_pkg_skeleton", "ioos_pkg_skeleton Documentation", [author], 1)
+    (master_doc, "ioos_pkg_skeleton", "ioos_pkg_skeleton Documentation", [author], 1),
 ]
 
 
@@ -189,5 +187,5 @@ texinfo_documents = [
         "ioos_pkg_skeleton",
         "One line description of project.",
         "Miscellaneous",
-    )
+    ),
 ]
