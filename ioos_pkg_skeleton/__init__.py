@@ -4,7 +4,6 @@ ioos_pkg_skeleton is not a real package, just a set of best practices examples.
 
 from ioos_pkg_skeleton.ioos_pkg_skeleton import meaning_of_life, meaning_of_life_url
 
-
 __all__ = [
     "meaning_of_life",
     "meaning_of_life_url",
