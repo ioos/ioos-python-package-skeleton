@@ -38,7 +38,7 @@ jobs:
 
     - name: Test wheels
       run: |
-        cd dist && python -m pip install ctd*.whl
+        cd dist && python -m pip install ioos_pkg_skeleton*.whl
         python -m twine check *
       shell: bash
 
