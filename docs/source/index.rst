@@ -19,7 +19,7 @@ The best module ever written!
    :maxdepth: 3
    :caption: Contents:
 
-   tutorial.ipynb
+   tutorial-output.ipynb
    ioos_pkg_skeleton
 
 Indices and tables

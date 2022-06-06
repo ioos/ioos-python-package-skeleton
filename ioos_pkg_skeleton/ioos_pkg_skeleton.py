@@ -16,7 +16,7 @@ def meaning_of_life(n: int) -> np.ndarray:
 
 def meaning_of_life_url() -> str:
     """
-    Fetch the meaning of life from http://en.wikipedia.org.
+    Fetch the meaning of life from https://en.wikipedia.org/wiki/Main_Page.
     """
     url = "https://en.wikipedia.org/api/rest_v1/page/summary/Monty_Python's_The_Meaning_of_Life"
     r = requests.get(url)
