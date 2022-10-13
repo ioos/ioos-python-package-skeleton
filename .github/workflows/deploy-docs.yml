@@ -28,7 +28,7 @@ jobs:
 
     - name: Get the version
       id: get_version
-      run: echo ::set-output name=VERSION::$(python setup.py --version)
+      run: echo "VERSION=$(python setup.py --version)" >> $GITHUB_OUTPUT
 
     - name: Build documentation
       shell: bash -l {0}
