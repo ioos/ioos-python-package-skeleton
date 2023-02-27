@@ -36,8 +36,17 @@ include-package-data = true
 write_to = "ioos_pkg_skeleton/_version.py"
 write_to_template = "__version__ = '{version}'"
 
-[tool.black]
+[tool.ruff]
+select = [
+    "F", # flakes
+    "I", # import sorting
+    "U", # upgrade
+]
+target-version = "py311"
 line-length = 79
+
+[tool.ruff.per-file-ignores]
+"docs/conf.py" = ["E402"]
 
 [tool.interrogate]
 ignore-init-method = true
