@@ -10,7 +10,7 @@ requires = [
 name = "ioos-pkg-skeleton"
 description = "MY AWESOME MODULE"
 readme = "README.md"
-license = {text = "BSD-3-Clause", file = "LICENSE.txt"}
+license = {file = "LICENSE.txt"}
 authors = [
     {name = "AUTHOR NAME", email = "AUTHOR@EMAIL.COM"},
 ]
