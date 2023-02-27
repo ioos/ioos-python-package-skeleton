@@ -1,29 +1,30 @@
 [build-system]
-requires = [
-    "setuptools>=42",
-    "wheel",
-    "setuptools_scm[toml]>=3.4",
-]
 build-backend = "setuptools.build_meta"
+requires = [
+  "setuptools>=42",
+  "setuptools_scm[toml]>=3.4",
+  "wheel",
+]
 
 [project]
-name = "ioos_pkg_skeleton"
+name = "ioos-pkg-skeleton"
+description = "MY AWESOME MODULE"
+readme = "README.md"
+license = {text = "BSD-3-Clause", file = "LICENSE.txt"}
 authors = [
     {name = "AUTHOR NAME", email = "AUTHOR@EMAIL.COM"},
 ]
-description = "MY AWESOME MODULE"
-dynamic = ["version"]
 requires-python = ">=3.6"
-readme = "README.md"
-license = {text = "BSD-3-Clause", file = "LICENSE.txt"}
-dependencies = [
-    "numpy",
-    "requests,
+dynamic = [
+  "version",
 ]
-
+dependencies = [
+  "numpy",
+  "requests",
+]
 [project.urls]
-homepage = "https://github.com/ioos/ioos-python-package-skeleton"
 documentation = "https://ioos.github.io/ioos-python-package-skeleton"
+homepage = "https://github.com/ioos/ioos-python-package-skeleton"
 repository = "https://github.com/ioos/ioos-python-package-skeleton"
 
 [tool.setuptools]
