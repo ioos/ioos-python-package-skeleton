@@ -4,12 +4,12 @@
 
 IOOS packages are developed by multiple partners and enforcing a
 cookie-cutter would cause more harm than good.
-That is why we prefer a set of guidelines instead.
+That is why we prefer a set of guidelines where only the parts that are of interested to the user can be copied instead.
 
-This document describes these guidelines and how to implement them in an existing
-project or a new one.
+This document describes these guidelines and how to implement them in an existing project or a new one.
 
-If you know enough about Python packaging just visit [https://github.com/ioos/ioos-python-package-skeleton](https://github.com/ioos/ioos-python-package-skeleton) and copy the bits that are relevant to your project.
+If you know enough about Python packaging just visit
+[https://github.com/ioos/ioos-python-package-skeleton](https://github.com/ioos/ioos-python-package-skeleton) and copy the bits that are relevant to your project.
 
 ## Project structure
 
@@ -44,12 +44,12 @@ the most common one is BSD-3-Clause.
 
 ## PEP 517/518
 
-[PEP 517](https://www.python.org/dev/peps/pep-0517) species a build-system that is
+[PEP 517](https://peps.python.org/pep-0517/) species a build-system that is
 independent of the format for source trees (your code).
 The idea is to allow for other tools to become Python builds systems,
 like `flit` and `poetry`,
 via a minimum interface installation with `pip`.
-PEP 517 really shines when combined with [PEP 518](https://www.python.org/dev/peps/pep-0518),
+PEP 517 really shines when combined with [PEP 518](https://peps.python.org/pep-0518),
 which specifies a minimum build system requirements via the `pyproject.toml` file.
 
 ```toml
@@ -71,7 +71,7 @@ The main advantages of using these PEPs together are:
 - ensure that setup dependencies will be available at build time.
 
 
-[This blog post](https://medium.com/@grassfedcode/pep-517-and-518-in-plain-english-47208ca8b7a6) contains a nice summary of these PEPs.
+[This blog post](https://chadsmith-software.medium.com/pep-517-and-518-in-plain-english-47208ca8b7a6) contains a nice summary of these PEPs.
 
 For IOOS packages we recommend to keep a bare bones `setup.py`,
 for backwards compatibility, and to move all the package metadata to a `setup.cfg`,
@@ -94,9 +94,7 @@ setup(
 
 ```
 
-The use of `versioneer` is deprecated because PEP 518 now ignores files in the root of the package.
-One can work around it by adding the the root directory to the path in `setup.py`
-but instead we recommend the use of `setuptools-scm`.
+We recommend the use of `setuptools-scm`.
 Just add `setuptools-scm` to your development/build dependencies and the lines above in your `setup.py` file.
 The version will be automatically generated via tags and changes in your version control system.
 
@@ -238,104 +236,67 @@ wheel
 
 ## Continuous Integration
 
-The easiest one to configure is Travis-CI,
-while AzurePipelines are growing in popularity Travis-CI is easier to setup up and
-maintain. The example below can be copied into your project with little modifications.
+The easiest one to configure is GitHub Actions,
 
 ```yaml
-language: minimal
+name: Tests
 
-sudo: false
+on:
+  pull_request:
+  push:
+    branches: [main]
 
-env:
-  global:
-    - secure: "TOKEN"
+jobs:
+  run:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+        os: [windows-latest, ubuntu-latest, macos-latest]
+      fail-fast: false
 
-matrix:
-  fast_finish: true
-  include:
-    - name: "python-3.6"
-      env: PY=3.6
-    - name: "python-3.8"
-      env: PY=3.8
-    - name: "coding_standards"
-      env: PY=3
-    - name: "tarball"
-      env: PY=3
-    - name: "docs"
-      env: PY=3
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
-before_install:
-  # Install miniconda and create TEST env.
-  - |
-    wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-    bash miniconda.sh -b -p $HOME/miniconda
-    export PATH="$HOME/miniconda/bin:$PATH"
-    conda config --set always_yes yes --set changeps1 no --set show_channel_urls true
-    conda update --quiet conda
-    conda config --add channels conda-forge --force
-    conda config --set channel_priority strict
-    conda create --name TEST python=$PY --file requirements.txt --file requirements-dev.txt
-    source activate TEST
-    conda info --all
+    - name: Setup Micromamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: false
 
-install:
-  - pip install -e . --no-deps --force-reinstall
+    - name: Python ${{ matrix.python-version }}
+      shell: bash -l {0}
+      run: |
+        micromamba create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt --channel conda-forge
+        micromamba activate TEST
+        python -m pip install -e . --no-deps --force-reinstall
 
-script:
-  - if [[ $TRAVIS_JOB_NAME == python-* ]]; then
-      cp -r tests/ /tmp ;
-      pushd /tmp && pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests && popd ;
-    fi
-
-  - if [[ $TRAVIS_JOB_NAME == 'tarball' ]]; then
-      pip wheel . -w dist --no-deps ;
-      check-manifest --verbose ;
-      twine check dist/* ;
-    fi
-
-  - if [[ $TRAVIS_JOB_NAME == 'coding_standards' ]]; then
-      pytest --flake8 -m flake8 ;
-    fi
-
-  - |
-    if [[ $TRAVIS_JOB_NAME == 'docs' ]]; then
-      set -e
-      cp notebooks/tutorial.ipynb docs/source/
-      pushd docs
-      make clean html linkcheck
-      popd
-      if [[ -z "$TRAVIS_TAG" ]]; then
-        python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html dev
-      else
-        python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html "version-$TRAVIS_TAG"
-        python -m doctr deploy --build-tags --key-path github_deploy_key.enc --built-docs docs/_build/html .
-      fi
-    fi
-
+    - name: Tests
+      shell: bash -l {0}
+      run: |
+        micromamba activate TEST
+        python -m pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests
 ```
 
-This configuration sets a test matrix with multiple python versions, tarball tests, coding standards, and documentation builds.
+This configuration sets a test matrix with multiple python versions and OSes.
 The conda environment for the tests is created using the same requirement files as one would of with `pip` and the install section performs a simple `pip` installation to ensure everything works as expected on a user machine.
 
-The test section will run all the items in the matrix if the conditions are met. Note that the documentation section will also build for latest version, development, and the tagged version.
-
-Note that the tarball check is more than just the files in the manifest.
-The command `pip wheel . -w dist --no-deps` creates the binary wheels and `twine check dist/*` ensures it is OK for publication on PyPI.
+The test section will run all the items in the matrix if the conditions are met.
+Note that the documentation section will also build for latest version, development, and the tagged version.
 
 PS: one can create a local development environment using the same commands as the CI.
 If you already have conda installed something like,
 
 ```
-conda create --name TEST python=3.8 --file requirements.txt --file requirements-dev.txt
+conda create --name TEST python=3 --file requirements.txt --file requirements-dev.txt
 ```
 
-will create the testing env for Python 3.8.
 
-## Configuring `pre-commit` locally and on GitHub Actions
+## Configuring `pre-commit` locally
 
 With `pre-commit` we can run multiple checks every time we issue a new commit.
-These checks can also be run on GitHub Actions as a CI.
+These checks can also be run on https://pre-commit.ci/.
 This is useful when the contributors do not have `pre-commit` installed on their machine.
 
 The configuration below can be dropped in the project root.
@@ -413,33 +374,115 @@ and ignoring it in a commit if you don't want it to run:
 git commit ioos_pkg_skeleton/some-dot-pwhy.py --no-verify
 ```
 
-## Github Actions
+## PyPI auto publishing with GitHub Actions
 
-There is a lot that we can do with GitHub Actions, here we'll use it as an extra CI that will run the `pre-commit` checks. This is very useful when contributors do not have pre-commit configured in their machines.
-
-This file should be in the `.github/workflows` folder.
+For the `PYPI_PASSWORD` you can get the TOKEN from the PyPI website and add to GitHub's secrets.
+The rest of this GiTHub is mostly a boilerplate package building and installation testing.
 
 ```yaml
-name: pre-commit
+name: Publish to PyPI
 
 on:
   pull_request:
   push:
-    branches: [master]
+    branches: [main]
+  release:
+    types: [published]
 
 jobs:
-  pre-commit:
+  packages:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/setup-python@v1
-    - name: set PY
-      run: echo "::set-env name=PY::$(python --version --version | sha256sum | cut -d' ' -f1)"
-    - uses: actions/cache@v1
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
       with:
-        path: ~/.cache/pre-commit
-        key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
-    - uses: pre-commit/action@v1.0.0
+        python-version: "3.x"
+
+    - name: Get tags
+      run: git fetch --depth=1 origin +refs/tags/*:refs/tags/*
+      shell: bash
+
+    - name: Install build tools
+      run: |
+        python -m pip install --upgrade pip wheel setuptools setuptools_scm build twine
+
+      shell: bash
+
+    - name: Build binary wheel
+      run: python -m build --sdist --wheel . --outdir dist
+
+    - name: CheckFiles
+      run: |
+        ls dist
+      shell: bash
+
+    - name: Test wheels
+      run: |
+        cd dist && python -m pip install ioos_pkg_skeleton*.whl
+        python -m twine check *
+      shell: bash
+
+    - name: Publish a Python distribution to PyPI
+      if: success() && github.event_name == 'release'
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        user: __token__
+        password: ${{ secrets.PYPI_PASSWORD }}
+```
+
+## gh-pages documentation auto publishing with GitHub Actions
+
+```yaml
+name: Build and Deploy docs
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Setup Mamba
+      uses: mamba-org/provision-with-micromamba@main
+      with:
+        environment-file: false
+
+    - name: Build environment
+      shell: bash -l {0}
+      run: |
+        micromamba create --name TEST python=3 --file requirements.txt --file requirements-dev.txt --channel conda-forge
+        micromamba activate TEST
+        python -m pip install -e . --no-deps --force-reinstall
+
+    - name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::$(python setup.py --version)
+
+    - name: Build documentation
+      shell: bash -l {0}
+      run: |
+        set -e
+        micromamba activate TEST
+        jupyter nbconvert --to notebook --execute notebooks/tutorial.ipynb --output=tutorial-output.ipynb
+        mv notebooks/*output.ipynb docs/source/
+        pushd docs
+        make clean html linkcheck
+        popd
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3.6.1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: docs/build/html
 ```
 
 ## Summary
@@ -461,7 +504,7 @@ and the Nice to Have:
 
 ```
 - automatic version number from tags (`setuptools-scm`)
-- auto-publish docs and tarball (`sphinx` and `doctr`)
+- auto-publish docs and tarball
 - tarball automated checks (`check-manifest`)
 - standard style: `black`, lints (`flake8`), `isort`
 - integration tests
@@ -477,10 +520,3 @@ and the Nice to Have:
 ```
 
 Please check out https://www.pyopensci.org/
-
-## TODO
-
-- auto PyPI publication
-https://packaging.python.org/guides/publishing-package-distribution-releases-using-github-actions-ci-cd-workflows/
-
-- conda-forge publication

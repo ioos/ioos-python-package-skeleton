@@ -1,22 +1,24 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ioos_pkg_skeleton API &#8212; ioos_pkg_skeleton 1.0.0 documentation</title>
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ioos_pkg_skeleton API &#8212; ioos_pkg_skeleton 2.0.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="ioos_pkg_skeleton tutorial" href="tutorial.html" />
+    <link rel="prev" title="ioos_pkg_skeleton tutorial" href="tutorial-output.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -65,17 +67,21 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="how2package4ioos.html">IOOS packaging guidelines</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="tutorial.html">ioos_pkg_skeleton tutorial</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial-output.html">ioos_pkg_skeleton tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life"><code class="docutils literal notranslate"><span class="pre">meaning_of_life()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life_url"><code class="docutils literal notranslate"><span class="pre">meaning_of_life_url()</span></code></a></li>
+</ul>
+</li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="tutorial.html" title="previous chapter">ioos_pkg_skeleton tutorial</a></li>
+      <li>Previous: <a href="tutorial-output.html" title="previous chapter">ioos_pkg_skeleton tutorial</a></li>
   </ul></li>
 </ul>
 </div>
@@ -83,12 +89,12 @@
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
@@ -105,23 +111,23 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="module-ioos_pkg_skeleton.ioos_pkg_skeleton">
-<span id="ioos-pkg-skeleton-api"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code><a class="headerlink" href="#module-ioos_pkg_skeleton.ioos_pkg_skeleton" title="Permalink to this headline">¶</a></h1>
+  <section id="module-ioos_pkg_skeleton.ioos_pkg_skeleton">
+<span id="ioos-pkg-skeleton-api"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">ioos_pkg_skeleton</span> <span class="pre">API</span></code><a class="headerlink" href="#module-ioos_pkg_skeleton.ioos_pkg_skeleton" title="Permalink to this heading">¶</a></h1>
 <p>ioos_pkg_skeleton</p>
 <p>My awesome ioos_pkg_skeleton</p>
 <dl class="py function">
-<dt id="ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life">
-<code class="sig-prename descclassname">ioos_pkg_skeleton.ioos_pkg_skeleton.</code><code class="sig-name descname">meaning_of_life</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="reference internal" href="_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html#meaning_of_life"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life">
+<span class="sig-prename descclassname"><span class="pre">ioos_pkg_skeleton.ioos_pkg_skeleton.</span></span><span class="sig-name descname"><span class="pre">meaning_of_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html#meaning_of_life"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the meaning of life n times.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life_url">
-<code class="sig-prename descclassname">ioos_pkg_skeleton.ioos_pkg_skeleton.</code><code class="sig-name descname">meaning_of_life_url</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html#meaning_of_life_url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life_url" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fetch the meaning of life from <a class="reference external" href="http://en.wikipedia.org">http://en.wikipedia.org</a>.</p>
+<dt class="sig sig-object py" id="ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life_url">
+<span class="sig-prename descclassname"><span class="pre">ioos_pkg_skeleton.ioos_pkg_skeleton.</span></span><span class="sig-name descname"><span class="pre">meaning_of_life_url</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="_modules/ioos_pkg_skeleton/ioos_pkg_skeleton.html#meaning_of_life_url"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ioos_pkg_skeleton.ioos_pkg_skeleton.meaning_of_life_url" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch the meaning of life from <a class="reference external" href="https://en.wikipedia.org/wiki/Main_Page">https://en.wikipedia.org/wiki/Main_Page</a>.</p>
 </dd></dl>
 
-</div>
+</section>
 
 
           </div>
@@ -134,8 +140,8 @@
       &copy;2017, Filipe Fernandes.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.0</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
       <a href="_sources/ioos_pkg_skeleton.rst.txt"
