@@ -251,7 +251,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         os: [windows-latest, ubuntu-latest, macos-latest]
       fail-fast: false
 
@@ -260,22 +260,25 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Setup Micromamba
-      uses: mamba-org/provision-with-micromamba@main
+    - name: Setup Micromamba ${{ matrix.python-version }}
+      uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: false
+        environment-name: TEST
+        init-shell: bash
+        create-args: >-
+          python=${{ matrix.python-version }} pip
+          --file requirements.txt
+          --file requirements-dev.txt
+          --channel conda-forge
 
-    - name: Python ${{ matrix.python-version }}
+    - name: Install package
       shell: bash -l {0}
       run: |
-        micromamba create --name TEST python=${{ matrix.python-version }} --file requirements.txt --file requirements-dev.txt --channel conda-forge
-        micromamba activate TEST
         python -m pip install -e . --no-deps --force-reinstall
 
     - name: Tests
       shell: bash -l {0}
       run: |
-        micromamba activate TEST
         python -m pytest -n 2 -rxs --cov=ioos_pkg_skeleton tests
 ```
 
@@ -435,11 +438,16 @@ jobs:
 ## gh-pages documentation auto publishing with GitHub Actions
 
 ```yaml
-name: Build and Deploy docs
+name: Documentation
 
 on:
+  pull_request:
   push:
-    branches: [main]
+    branches:
+      - main
+  release:
+    types:
+      - published
 
 jobs:
   build-docs:
@@ -451,27 +459,26 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: Setup Mamba
-      uses: mamba-org/provision-with-micromamba@main
+    - name: Setup Micromamba
+      uses: mamba-org/setup-micromamba@v1
       with:
-        environment-file: false
+        environment-name: TEST
+        init-shell: bash
+        create-args: >-
+          python=3 pip
+          --file requirements.txt
+          --file requirements-dev.txt
+          --channel conda-forge
 
-    - name: Build environment
+    - name: Install package
       shell: bash -l {0}
       run: |
-        micromamba create --name TEST python=3 --file requirements.txt --file requirements-dev.txt --channel conda-forge
-        micromamba activate TEST
         python -m pip install -e . --no-deps --force-reinstall
-
-    - name: Get the version
-      id: get_version
-      run: echo ::set-output name=VERSION::$(python setup.py --version)
 
     - name: Build documentation
       shell: bash -l {0}
       run: |
         set -e
-        micromamba activate TEST
         jupyter nbconvert --to notebook --execute notebooks/tutorial.ipynb --output=tutorial-output.ipynb
         mv notebooks/*output.ipynb docs/source/
         pushd docs
@@ -479,7 +486,8 @@ jobs:
         popd
 
     - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3.6.1
+      if: success() && github.event_name == 'release'
+      uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/build/html
