@@ -27,30 +27,30 @@ repos:
     - id: blackdoc
 
 - repo: https://github.com/charliermarsh/ruff-pre-commit
-  rev: v0.0.270
+  rev: v0.0.282
   hooks:
     - id: ruff
 
 - repo: https://github.com/psf/black
-  rev: 23.3.0
+  rev: 23.7.0
   hooks:
   - id: black
     language_version: python3
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.5
   hooks:
     - id: codespell
       args:
         - --quiet-level=2
 
 - repo: https://github.com/asottile/add-trailing-comma
-  rev: v2.4.0
+  rev: v3.0.1
   hooks:
     - id: add-trailing-comma
 
 - repo: https://github.com/tox-dev/pyproject-fmt
-  rev: "0.11.2"
+  rev: "0.13.0"
   hooks:
     - id: pyproject-fmt
 
@@ -59,3 +59,15 @@ repos:
   hooks:
     - id: sort-all
       types: [file, python]
+
+
+ci:
+    autofix_commit_msg: |
+        [pre-commit.ci] auto fixes from pre-commit.com hooks
+
+        for more information, see https://pre-commit.ci
+    autofix_prs: false
+    autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+    autoupdate_schedule: monthly
+    skip: []
+    submodules: false
