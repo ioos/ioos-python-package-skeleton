@@ -71,8 +71,6 @@ The main advantages of using these PEPs together are:
 - ensure that setup dependencies will be available at build time.
 
 
-[This blog post](https://chadsmith-software.medium.com/pep-517-and-518-in-plain-english-47208ca8b7a6) contains a nice summary of these PEPs.
-
 For IOOS packages we recommend to keep a bare bones `setup.py`,
 for backwards compatibility, and to move all the package metadata to a `setup.cfg`,
 while keeping the `pyproject.toml` only for the build information.
