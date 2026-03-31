@@ -10,6 +10,7 @@ prune notebooks
 prune *.egg-info
 
 exclude .gitignore
+exclude ioos_pkg_skeleton/_version.py
 
 global-exclude *.nc
 global-exclude *.yaml
