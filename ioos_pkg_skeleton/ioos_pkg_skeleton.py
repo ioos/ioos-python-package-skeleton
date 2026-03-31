@@ -12,8 +12,9 @@ def meaning_of_life(n: int) -> np.ndarray:
 
 def meaning_of_life_url() -> str:
     """Fetch the meaning of life from https://en.wikipedia.org/wiki/Main_Page."""
+    headers = {"User-Agent": "IOOS-SKELETON/0.0 ; ioos-skeleton@example.org)"}
     url = "https://en.wikipedia.org/api/rest_v1/page/summary/Monty_Python's_The_Meaning_of_Life"
-    r = requests.get(url, timeout=10)
+    r = requests.get(url, headers=headers, timeout=10)
     r.raise_for_status()
     j = r.json()
     return j["extract"]

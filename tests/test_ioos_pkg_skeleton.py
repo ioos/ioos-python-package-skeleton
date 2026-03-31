@@ -18,7 +18,7 @@ def test_meaning_of_life_url():
 
 def test_meaning_of_life():
     """Test meaning_of_life function."""
-    answer, n = 2, 42
+    n, answer = 2, 42
     ret = meaning_of_life(n)
     assert isinstance(ret, np.ndarray)
     assert np.unique(ret) == answer
