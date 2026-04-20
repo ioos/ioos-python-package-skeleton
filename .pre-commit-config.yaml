@@ -73,7 +73,7 @@ repos:
     - id: nb-strip-paths
 
 - repo: https://github.com/woodruffw/zizmor-pre-commit
-  rev: v1.23.1
+  rev: v1.24.1
   hooks:
     - id: zizmor
 
