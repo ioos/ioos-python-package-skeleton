@@ -1,6 +1,6 @@
 ## ioos_pkg_skeleton
 
-[![Build Status](https://travis-ci.com/ioos/ioos-python-package-skeleton.svg?branch=master)](https://travis-ci.com/ioos/ioos-python-package-skeleton)
+[![Tests](https://github.com/ioos/ioos-python-package-skeleton/actions/workflows/tests.yml/badge.svg)](https://github.com/ioos/ioos-python-package-skeleton/actions/workflows/tests.yml)
 
 Quick description
 
